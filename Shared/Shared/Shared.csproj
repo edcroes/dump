@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>Shared</PackageId>
+    <Version>1.2.0</Version>
+    <Authors>Someone</Authors>
+    <Company>SomeCompany</Company>
+    <Product>Shared</Product>
+    <Description>Just some garbage</Description>
+    <Copyright>SomeCompany</Copyright>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="6.0.0" />
+	  <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="Pack">
+    <Exec Command="copy /Y $(OutDir)..\*.nupkg ..\..\Packages\" />
+  </Target>
+
+</Project>
